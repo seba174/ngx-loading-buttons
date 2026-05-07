@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgxLoadingButtonsModule } from '@seba174/ngx-loading-buttons';
+import {
+  MatBasicSpinnerDirective,
+  MatGlowDirective
+} from '@seba174/ngx-loading-buttons';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
   imports: [
     BrowserModule,
-    NgxLoadingButtonsModule,
+    MatBasicSpinnerDirective,
+    MatGlowDirective,
     MatButtonModule,
     MatDividerModule,
     BrowserAnimationsModule

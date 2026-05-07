@@ -9,11 +9,12 @@
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/%40seba174%2Fngx-loading-buttons)](https://bundlephobia.com/package/@seba174/ngx-loading-buttons)
 [![CI](https://github.com/seba174/ngx-loading-buttons/actions/workflows/main.yml/badge.svg)](https://github.com/seba174/ngx-loading-buttons/actions/workflows/main.yml)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)]()
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 [![npm](https://img.shields.io/npm/l/@seba174/ngx-loading-buttons.svg?maxAge=2592000)](https://github.com/seba174/ngx-loading-buttons/blob/main/LICENSE)
 
 
 A lightweight Angular library to add a loading spinner to your [Angular Material](https://material.angular.io) buttons. 
+
+> This package is a maintained fork of the original `ngx-loading-buttons` project, published as `@seba174/ngx-loading-buttons` for current Angular releases.
 
 <img src="https://raw.githubusercontent.com/seba174/ngx-loading-buttons/main/example.gif">
 
@@ -26,34 +27,43 @@ ng add @seba174/ngx-loading-buttons
 
 ## Usage
 
-Import the `NgxLoadingButtonsModule` into your `AppModule`. You can configure it as shown below:
+Import the standalone directives you use directly.
 
 ```ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxLoadingButtonsModule } from '@seba174/ngx-loading-buttons';
+import { Component, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  MatBasicSpinnerDirective,
+  MatGlowDirective,
+} from '@seba174/ngx-loading-buttons';
 
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent    
-  ],
+@Component({
+  selector: 'app-save-button',
+  standalone: true,
   imports: [
-    BrowserModule,
-    NgxLoadingButtonsModule,
+    MatButtonModule,
+    MatBasicSpinnerDirective,
+    MatGlowDirective,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  template: `
+    <button mat-raised-button [mtBasicSpinner]="saving()" [hideText]="true" (click)="save()">Save</button>
+    <button mat-button [mtGlow]="saving()" glowColor="blue" (click)="save()">Save</button>
+  `,
 })
-export class AppModule { }
+export class SaveButtonComponent {
+  saving = signal(false);
 
+  save(): void {
+    this.saving.set(true);
+    // Run your async save operation here.
+  }
+}
 ```
 
-And last of all, add it to your `<button>` element like this.
+Use `mtBasicSpinner` for the spinner state.
 
 ```html
-<button mat-raised-button [mtBasicSpinner]="true">Basic</button>
+<button mat-raised-button [mtBasicSpinner]="saving()">Basic</button>
 ```
 
 You can also hide the button's text like this.
@@ -62,76 +72,23 @@ You can also hide the button's text like this.
 <button mat-raised-button [mtBasicSpinner]="true" [hideText]="true">Basic</button>
 ```
 
-A "real-world component" would likely look like this.
-
-```typescript
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  saving: boolean = false;
-
-  save(): void {
-    this.saving = true;
-    // Juggle 5 hens while wiggling your toes and other magic... 🤡
-  }
-
-
-}
-```
-
-And our template file.
+Use `mtGlow` for the glow loading state.
 
 ```html
-<button mat-raised-button [mtBasicSpinner]="saving" (click)="save()">Basic</button>
+<button mat-raised-button [mtGlow]="saving()" glowColor="blue">Basic</button>
 ```
 
-Add our styles to yours
+Add the package styles to your global styles.
 
 ```scss
 @import '@seba174/ngx-loading-buttons/styles';
 ```
 
-## Issues 🐛
+## Issues
 
-Found a bug? Want to request a feature? Confused? Or wanna simply comment on how useful this library is? 
+Found a bug or want to request a feature?
 
 Open an issue [here](https://github.com/seba174/ngx-loading-buttons/issues).
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/seba174"><img src="https://github.com/seba174.png" width="100px;" alt=""/><br /><sub><b>seba174</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=seba174" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Totto16"><img src="https://avatars.githubusercontent.com/u/32566573?v=4" width="100px;" alt=""/><br /><sub><b>Totto</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=Totto16" title="Code">💻</a></td>
-    <td align="center"><a href="https://megaphone.info/"><img src="https://avatars.githubusercontent.com/u/44493964?v=4" width="100px;" alt=""/><br /><sub><b>Raphaël Balet</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=rbalet" title="Code">💻</a></td>
-    <td align="center"><a href="https://damingerdai.github.io/"><img src="https://avatars.githubusercontent.com/u/16384908?v=4" width="100px;" alt=""/><br /><sub><b>Arthur Ming</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=damingerdai" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.bolzplatzarena.net/"><img src="https://avatars.githubusercontent.com/u/6323357?v=4" width="100px;" alt=""/><br /><sub><b>Thomas Renger</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=rengert" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/mixer904"><img src="https://avatars.githubusercontent.com/u/89263304?v=4" width="100px;" alt=""/><br /><sub><b>mixer904</b></sub></a><br /><a href="https://github.com/seba174/ngx-loading-buttons/commits?author=mixer904" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/fwautriche"><img src="https://avatars.githubusercontent.com/u/3090227?v=4" width="100px;" alt=""/><br /><sub><b>Fabien Wautriche</b></sub></a><br />🐛</td>
-    <td align="center"><a href="https://github.com/tux1337"><img src="https://avatars.githubusercontent.com/u/33804893?v=4" width="100px;" alt=""/><br /><sub><b>tux1337</b></sub></a><br />🐛</td>    
-    <td align="center"><a href="https://github.com/MilanNemeth"><img src="https://avatars.githubusercontent.com/u/63391662?v=4" width="100px;" alt=""/><br /><sub><b>Milán Németh</b></sub></a><br />🐛</td>    
-    <td align="center"><a href="https://github.com/Deewens"><img src="https://avatars.githubusercontent.com/u/26287270?v=4" width="100px;" alt=""/><br /><sub><b>Adrien</b></sub></a><br />🐛</td>    
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
-
-Contributions of any kind welcome!
 
 ## Credits
 - <a href="https://www.flaticon.com/free-icons/fidget-spinner" title="fidget-spinner icons">Fidget-spinner icons created by Smashicons - Flaticon</a>
