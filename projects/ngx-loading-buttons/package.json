@@ -1,13 +1,14 @@
 {
-  "name": "ngx-loading-buttons",
+  "name": "@seba174/ngx-loading-buttons",
   "version": "20.0.0",
+  "description": "A lightweight Angular library to add a loading spinner to Angular Material buttons.",
   "peerDependencies": {
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/cdk": "^20.0.0"
   },
-  "engines":{
-    "node": "^20.11.1 || ^22.10.0"
+  "engines": {
+    "node": "^22.14.0 || ^24.0.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
@@ -23,7 +24,15 @@
   },
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/dkreider/ngx-loading-buttons"
+    "type": "git",
+    "url": "git+https://github.com/seba174/ngx-loading-buttons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seba174/ngx-loading-buttons/issues"
+  },
+  "homepage": "https://github.com/seba174/ngx-loading-buttons#readme",
+  "publishConfig": {
+    "access": "public"
   },
   "exports": {
     "./styles": "./src/styles.css",

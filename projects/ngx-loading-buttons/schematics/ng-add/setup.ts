@@ -4,7 +4,7 @@ import { getProjectTargetOptions } from '@angular/cdk/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema } from './schema';
 
-const themePath = `./node_modules/ngx-loading-buttons/src/styles.css`;
+const themePath = `./node_modules/@seba174/ngx-loading-buttons/src/styles.css`;
 
 export default function (options: Schema): Rule {
   return async () => {

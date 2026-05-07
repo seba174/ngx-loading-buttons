@@ -13,7 +13,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "ngx-loading-buttons": [
+      "@seba174/ngx-loading-buttons": [
         "dist/ngx-loading-buttons/ngx-loading-buttons",
         "dist/ngx-loading-buttons"
       ]
