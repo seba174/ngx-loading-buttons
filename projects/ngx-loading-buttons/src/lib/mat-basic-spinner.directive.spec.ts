@@ -1,43 +1,53 @@
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from 'projects/ngx-loading-buttons-playground/src/app/app.component';
 import { MatBasicSpinnerDirective } from './mat-basic-spinner.directive';
+
+@Component({
+  template: `
+    <button id="spinnerWithText" [mtBasicSpinner]="saving()">Button</button>
+    <button id="spinnerWithoutText" [mtBasicSpinner]="saving()" [hideText]="true">Basic</button>
+  `,
+  standalone: false,
+})
+class TestHostComponent {
+  saving = signal(false);
+}
 
 describe('MatBasicSpinnerDirective', () => {
 
-  let fixture: ComponentFixture<AppComponent>;
+  let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       imports: [
         MatBasicSpinnerDirective
       ],
-      declarations: [AppComponent]
+      declarations: [TestHostComponent]
     })
-    .createComponent(AppComponent);
+    .createComponent(TestHostComponent);
 
     fixture.detectChanges();
   })
 
   it('should create an instance', () => {
-    var element = fixture.debugElement;
-    const directive = new MatBasicSpinnerDirective(element);
-    expect(directive).toBeTruthy();
+    const element: HTMLButtonElement = fixture.nativeElement.querySelector("#spinnerWithText");
+    expect(element).toBeTruthy();
   });
 
   it('should show spinner and text when loading is true', () => {
-    fixture.componentInstance.saving = true;
+    fixture.componentInstance.saving.set(true);
     fixture.detectChanges();
 
-    var element: HTMLButtonElement = fixture.nativeElement.querySelector("#spinnerWithText");
-    expect(element.className).toEqual("mat-spinner");
+    const element: HTMLButtonElement = fixture.nativeElement.querySelector("#spinnerWithText");
+    expect(element.classList).toContain("mat-spinner");
     expect(element.disabled).toEqual(true);
   });
 
   it('should show spinner and hide text when loading is true', () => {
-    fixture.componentInstance.saving = true;
+    fixture.componentInstance.saving.set(true);
     fixture.detectChanges();
 
-    var element: HTMLButtonElement = fixture.nativeElement.querySelector("#spinnerWithoutText");
+    const element: HTMLButtonElement = fixture.nativeElement.querySelector("#spinnerWithoutText");
     expect(element.className).toContain("mat-spinner");
     expect(element.disabled).toEqual(true);
     expect(element.className).toContain("hide-btn-text");
