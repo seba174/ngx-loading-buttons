@@ -4,18 +4,30 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      auth:
+        description: Publish authentication mode
+        type: choice
+        required: true
+        default: trusted
+        options:
+          - trusted
+          - token-bootstrap
 
 permissions:
   contents: read
-  id-token: write
 
 concurrency:
   group: npm-publish
   cancel-in-progress: false
 
 jobs:
-  publish:
+  publish-trusted:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.auth == 'trusted' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -42,3 +54,42 @@ jobs:
 
       - name: Publish package
         run: npm publish ./dist/ngx-loading-buttons --access public
+
+  publish-token-bootstrap:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.auth == 'token-bootstrap' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.x"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test library
+        run: npm run test:ngx-loading-buttons
+
+      - name: Build library
+        run: npm run build:ngx-loading-buttons
+
+      - name: Show package contents
+        run: npm pack ./dist/ngx-loading-buttons --dry-run
+
+      - name: Publish package with npm token
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::NPM_TOKEN repository secret is required for token-bootstrap publish."
+            exit 1
+          fi
+          npm publish ./dist/ngx-loading-buttons --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
