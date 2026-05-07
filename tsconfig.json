@@ -2,8 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "rootDir": "./projects",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "strict": true,
@@ -12,10 +12,14 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "types": [
+      "jasmine",
+      "node"
+    ],
     "paths": {
       "@seba174/ngx-loading-buttons": [
-        "dist/ngx-loading-buttons/ngx-loading-buttons",
-        "dist/ngx-loading-buttons"
+        "./dist/ngx-loading-buttons/ngx-loading-buttons",
+        "./dist/ngx-loading-buttons"
       ]
     },
     "declaration": false,
@@ -23,10 +27,10 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "es2020",
+    "module": "ES2022",
     "lib": [
-      "es2020",
-      "dom"
+      "ES2022",
+      "DOM"
     ],
     "useDefineForClassFields": false
   },
@@ -35,5 +39,10 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "out-tsc"
+  ]
 }
