@@ -15,7 +15,9 @@ concurrency:
 
 jobs:
   publish:
+    name: Publish @seba174/ngx-loading-buttons
     runs-on: ubuntu-latest
+    environment: npm
 
     steps:
       - name: Checkout
