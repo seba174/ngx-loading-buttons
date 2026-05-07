@@ -1,6 +1,6 @@
 {
   "name": "@seba174/ngx-loading-buttons",
-  "version": "21.0.0",
+  "version": "21.0.1",
   "description": "A lightweight Angular library to add a loading spinner to Angular Material buttons.",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
