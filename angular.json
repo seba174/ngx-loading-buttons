@@ -21,7 +21,7 @@
             "development": {
               "tsConfig": "projects/ngx-loading-buttons/tsconfig.lib.json"
             }
-          },          
+          },
           "defaultConfiguration": "production"
         },
         "test": {
@@ -120,7 +120,9 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "projects/ngx-loading-buttons-playground/src/test.ts",
-            "polyfills": "projects/ngx-loading-buttons-playground/src/polyfills.ts",
+            "polyfills": [
+              "projects/ngx-loading-buttons-playground/src/polyfills.ts"
+            ],
             "tsConfig": "projects/ngx-loading-buttons-playground/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-loading-buttons-playground/karma.conf.js",
             "assets": [
