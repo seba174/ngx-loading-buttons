@@ -2,7 +2,6 @@ import { Directive, effect, ElementRef, input } from '@angular/core';
 
 @Directive({
   selector: '[mtBasicSpinner]',
-  standalone: true,
   host: {
     '[class.mat-spinner]': 'mtBasicSpinner()',
     '[class.hide-btn-text]': 'hideText() && mtBasicSpinner()',

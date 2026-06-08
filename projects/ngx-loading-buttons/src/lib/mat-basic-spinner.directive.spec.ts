@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatBasicSpinnerDirective } from './mat-basic-spinner.directive';
 
@@ -8,6 +8,7 @@ import { MatBasicSpinnerDirective } from './mat-basic-spinner.directive';
     <button id="spinnerWithoutText" [mtBasicSpinner]="saving()" [hideText]="true">Basic</button>
   `,
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestHostComponent {
   saving = signal(false);

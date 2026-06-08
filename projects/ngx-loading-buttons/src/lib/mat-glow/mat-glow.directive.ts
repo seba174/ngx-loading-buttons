@@ -2,7 +2,6 @@ import { Directive, effect, ElementRef, input } from '@angular/core';
 
 @Directive({
   selector: '[mtGlow]',
-  standalone: true,
   host: {
     '[class.mat-glow]': 'mtGlow()',
     '[class.hide-btn-text]': 'hideText() && mtGlow()',

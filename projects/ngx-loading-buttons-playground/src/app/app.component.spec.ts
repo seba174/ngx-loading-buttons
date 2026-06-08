@@ -1,4 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatBasicSpinnerDirective,
+  MatGlowDirective,
+} from '@seba174/ngx-loading-buttons';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -6,6 +13,13 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      imports: [
+        MatBasicSpinnerDirective,
+        MatGlowDirective,
+        MatButtonModule,
+        MatDividerModule,
+        NoopAnimationsModule,
       ],
     }).compileComponents();
   });
@@ -22,10 +36,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ngx-loading-buttons-playground');
   });
 
-  it('should render title', () => {
+  it('should render the demo heading', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ngx-loading-buttons-playground app is running!');
+    expect(compiled.querySelector('.content h2')?.textContent).toContain('ngx-loader-spinners');
   });
 });

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatGlowDirective } from './mat-glow.directive';
 
@@ -8,6 +8,7 @@ import { MatGlowDirective } from './mat-glow.directive';
     <button id="glowWithoutText" [mtGlow]="saving()" [hideText]="true" [glowColor]="color">Button</button>
   `,
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 class TestHostComponent {
   saving = signal(false);
