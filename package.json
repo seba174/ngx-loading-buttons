@@ -33,7 +33,7 @@
     "@angular/cli": "^22.0.0",
     "@angular/compiler-cli": "^22.0.0",
     "@types/jasmine": "~6.0.0",
-    "@types/node": "^25.9.2",
+    "@types/node": "^26.6.2",
     "copyfiles": "^2.4.1",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~6.3.0",
@@ -41,7 +41,7 @@
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.2.0",
+    "karma-jasmine-html-reporter": "~2.3.0",
     "ng-packagr": "^22.0.0",
     "typescript": "~6.0.3"
   }
