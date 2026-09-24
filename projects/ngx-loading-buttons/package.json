@@ -15,10 +15,6 @@
     "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ngx-loading-buttons/"
   },
   "schematics": "./schematics/collection.json",
-  "devDependencies": {
-    "copyfiles": "file:../../node_modules/copyfiles",
-    "typescript": "file:../../node_modules/typescript"
-  },
   "ng-add": {
     "save": "dependencies"
   },
